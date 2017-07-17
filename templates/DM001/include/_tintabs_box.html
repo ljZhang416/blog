@@ -1,0 +1,58 @@
+<div id="tintabs-2" class="widget widget_tin_tabs">
+    <ul class="tin-tabs-nav group tab-count-2">
+        <li class="tin-tab tab-recent"><a href="#tab-recent" title="历史上的今天"><i
+                class="fa fa-clock-o"></i><span>历史上的今天</span></a></li>
+        <li class="tin-tab tab-popular"><a href="#tab-popular" title="热门文章"><i
+                class="fa fa-star"></i><span>热门文章</span></a></li>
+    </ul>
+    <div class="tin-tabs-container">
+        <ul id="tab-recent" class="tin-tab">
+            <@jp.contents module="history" count="8" orderBy="created">
+            <#list contents as content>
+            <li>
+                <div class="tab-item-thumbnail">
+                </div>
+                <div class="tab-item-inner group">
+                    <p class="tab-item-title"><a href="${content.url}" rel="bookmark"
+                                                 title="${content.title}">${content.title}</a></p>
+                    <span class="tab-item-date">${content.created}</span>&nbsp;
+                    <span class="tab-item-category">${content.getTaxonomyAsUrl('category')!'未分类'}</span>
+                </div>
+            </li>
+            </#list>
+            </@jp.contents>
+        </ul><!--/.tin-tab-->
+        <ul id="tab-popular" class="tin-tab group thumbs-enabled">
+            <@jp.contents count="4" orderBy="view_count">
+            <#list contents as content>
+                <li>
+                    <div class="tab-item-thumbnail">
+                        <a href="${content.url}" title="${content.title}">
+                            <div class="thumb-img">
+                                <img class="box-hide"
+                                     src="${CTPATH}/images/image-pending0.gif"
+                                     data-original="${content.image}"
+                                     alt="${content.title}"/>
+                                <span><i class="fa fa-expand"></i></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="tab-item-inner group">
+                        <p class="tab-item-title"><a href="${content.url}" rel="bookmark"
+                                                     title="${content.title}">${content.title}</a></p>
+                        <span class="tab-item-date">${content.created}</span>&nbsp;
+                        <span class="tab-item-category">${content.getTaxonomyAsUrl('category')!'未分类'}</span>
+                    </div>
+                </li>
+            </#list>
+        </@jp.contents>
+        </ul><!--/.tin-tab-->
+
+
+        <ul id="tab-commemt" class="tin-tab group thumbs-enabled">
+
+        </ul><!--/.tin-tab-->
+
+    </div>
+
+</div>

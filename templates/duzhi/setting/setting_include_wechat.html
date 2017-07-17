@@ -1,0 +1,45 @@
+<div class="box-body">
+    <div class="form-group">
+        <label>开启二维码奖赏</label>
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox">
+                    开启
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>开启二维码奖赏</label>
+        <div class="form-group">
+            <div class="checkbox">
+                <img alt="" src="${CPATH}${OPTION('duzhi_wechat_pay_image')!}">
+            </div>
+        </div>
+        <textarea class="form-control input-md" rows="5" name="duzhi_wechat_pay_image">${OPTION('duzhi_wechat_pay_image')!}</textarea>
+        <p class="help-block">可以是地址，也可以是Base64编码</p>
+    </div>
+    <div class="form-group">
+        <label>打赏一个呗</label>
+        <input class="form-control input-md" type="text" placeholder="默认：打赏一个呗~~"
+               name="duzhi_wechat_pay_tips" value="${OPTION('duzhi_wechat_pay_tips')!}">
+    </div>
+    <div class="form-group">
+        <label>公众号二维码图片</label>
+        <div class="form-group">
+            <div class="checkbox">
+                <img alt="" src="${CPATH}${OPTION('duzhi_wechat_mp_image')!}">
+            </div>
+        </div>
+        <textarea class="form-control text-area" rows="6" name="duzhi_wechat_mp_image"
+        >${OPTION('duzhi_wechat_mp_image')!}</textarea>
+        <p class="help-block">可以是地址，也可以是Base64编码</p>
+    </div>
+    <div>
+        <label>打赏一个呗</label>
+        <input class="form-control input-md" type="text" placeholder="默认：打赏一个呗~~"
+               name="duzhi_wechat_mp_tips" value="${OPTION('duzhi_wechat_mp_tips')!}">
+    </div>
+
+</div>

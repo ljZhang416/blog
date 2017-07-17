@@ -1,0 +1,45 @@
+<#include "../_layout.html" />
+<#macro userLayout>
+    <div class="breadcrumbs">
+        <div class="container clr">
+            <div id="breadcrumbs"><h1>用户中心</h1>
+                <div class="breadcrumbs-text">
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home fa-fw"></i>&nbsp;<a href="${OPTION('web_domain')}">Home</a></li>
+                        <li>
+                            用户中心
+                        </li>
+                        <li class="active">用户资料</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-wrap">
+        <div id="single-blog-wrap" class="container">
+            <#include "../include/sitenews-list.html"/>
+            <div class="container pagewrapper clr" id="author-page">
+                <#include "../user/_user_center_aside.html"/>
+                <div class="pagecontent">
+                    <!-- Content -->
+                    <div class="content">
+             <#nested>
+                    </div>
+                    <!-- /.Content -->
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                $('.site_loading').animate({'width': '78%'}, 50);  //第三个节点
+            </script>        <!-- /.Sidebar -->
+        </div>
+    </div>
+    <script>
+        $(function () {
+//        $(".language-java").removeClass("language-java").addClass("prettyprint linenums java");
+//        prettyPrint();
+        })
+
+    </script>
+</#macro>

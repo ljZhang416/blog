@@ -1,0 +1,6 @@
+<#if content.getMetadata('source')??>
+    <#if content.getMetadata('source')?trim!=''>
+        <span class="item_forword">转</span>&nbsp;
+        <a title="点击进入原网站" target="_blank" class="item_forword" href="${content.getMetadata('source')}" rel="nofollow">原网站</a>
+    </#if>
+</#if>

@@ -1,0 +1,256 @@
+<#include "_layout.html"/>
+<@layout>
+<div class="breadcrumbs">
+    <div class="container clr">
+        <div id="breadcrumbs"><h1>
+            用户中心</h1>
+            <div class="breadcrumbs-text">
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home fa-fw"></i>&nbsp;<a href="${OPTION('web_domain')}">Home</a></li>
+                    <li>
+                        用户中心
+                    </li>
+                    <li class="active">用户资料</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main-wrap">
+    <div id="single-blog-wrap" class="container">
+        <#include "include/sitenews-list.html"/>
+        <div class="container pagewrapper clr" id="author-page">
+            <#include "include/_user_center_aside.html"/>
+            <div class="pagecontent">
+                <!-- Content -->
+                <div class="content">
+                    <div class="user-basic-info clr">
+                        <a class="user-avatar" href="http://old.duzhi.me/author/duzhi">
+                            <img alt=""
+                                 src="http://gravatar.duoshuo.com/avatar/5616d14537752e1679a44e3a4e4b5a42?s=80&amp;d=mm&amp;r=g"
+                                 srcset="http://gravatar.duoshuo.com/avatar/5616d14537752e1679a44e3a4e4b5a42?s=160&amp;d=mm&amp;r=g 2x"
+                                 class="avatar avatar-80 photo" height="80" width="80"> </a>
+                        <div class="user-text">
+                            <h4 class="user-display-name">${user.username!}</h4>
+                            <p class="user-register-time">2016年12月04日<span>注册</span>2017年02月16日<span>上次登录</span></p>
+                            <p class="user-description">没有个人说明 </p>
+                        </div>
+                    </div>
+                    <ul class="user-msg">
+                        <li class="tip">duzhi来DUZHI已经79天了</li>
+                    </ul>
+                    <table id="author-profile">
+                        <tbody>
+                        <tr>
+                            <td class="title">头像来源:</td>
+                            <td>默认头像</td>
+                        </tr>
+                        <tr>
+                            <td class="title">昵称:</td>
+                            <td>duzhi</td>
+                        </tr>
+                        <tr>
+                            <td class="title">站点:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="title">个人说明:</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <form id="info-form" class="form-horizontal" role="form" method="POST" action="">
+                        <input type="hidden" name="update" value="info">
+                        <input type="hidden" name="_wpnonce" value="47bd95b23d">
+                        <div class="page-header">
+                            <h3 id="info">基本信息
+                                <small>公开资料</small>
+                            </h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">头像</label>
+                            <div class="col-sm-9">
+
+                                <div class="radio">
+                                    <img alt=""
+                                         src="http://gravatar.duoshuo.com/avatar/5616d14537752e1679a44e3a4e4b5a42?s=40&amp;d=mm&amp;r=g"
+                                         srcset="http://gravatar.duoshuo.com/avatar/5616d14537752e1679a44e3a4e4b5a42?s=80&amp;d=mm&amp;r=g 2x"
+                                         class="avatar avatar-40 photo" height="40" width="40"> <label>
+                                    <input type="radio" name="avatar" value="default" checked="">默认头像 </label>
+                                    <label id="edit-avatar">(上传头像)</label>
+                                </div>
+
+                                <div id="upload-input">
+                                    <input name="file" type="file" value="浏览">
+                                    <span id="upload-avatar">上传</span>
+                                </div>
+                                <p id="upload-avatar-msg"></p>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="display_name" class="col-sm-3 control-label">昵称</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="display_name" name="display_name"
+                                       value="duzhi">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="url" class="col-sm-3 control-label">站点</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="url" name="url" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="col-sm-3 control-label">个人说明</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="3" name="description" id="description"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-primary">保存更改</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <form id="info-more-form" class="form-horizontal" role="form" method="post">
+                        <input type="hidden" name="update" value="info-more">
+                        <input type="hidden" name="_wpnonce" value="47bd95b23d">
+                        <div class="page-header">
+                            <h3 id="info">扩展资料
+                                <small>社会化信息等</small>
+                            </h3>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">新浪微博</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="tin_sina_weibo" name="tin_sina_weibo"
+                                       value="">
+                                <span class="help-block">请填写新浪微博账号</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">腾讯微博</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="tin_qq_weibo" name="tin_qq_weibo" value="">
+                                <span class="help-block">请填写腾讯微博账号</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Twitter</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="tin_twitter" name="tin_twitter" value="">
+                                <span class="help-block">请填写Twitter账号</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Google +</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="tin_googleplus" name="tin_googleplus"
+                                       value="">
+                                <span class="help-block">请填写Google+主页的完整Url</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">微信二维码</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="tin_weixin" name="tin_weixin" value="">
+                                <span class="help-block">请填写微信账号二维码图片的Url地址</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">支付宝收款二维码</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="tin_donate" name="tin_donate" value="">
+                                <span class="help-block">请填写支付宝收款二维码图片的Url地址</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-primary">提交资料</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <form id="aff-form" class="form-horizontal" role="form">
+                        <div class="page-header">
+                            <h3 id="open">推广链接
+                                <small>可赚取积分</small>
+                            </h3>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">推广链接</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control tin_aff_url" value="http://old.duzhi.me/?aff=1">
+                            </div>
+                        </div>
+                    </form>
+                    <form id="pass-form" class="form-horizontal" role="form" method="post">
+                        <input type="hidden" name="update" value="pass">
+                        <input type="hidden" name="_wpnonce" value="47bd95b23d">
+                        <div class="page-header">
+                            <h3 id="pass">账号安全
+                                <small>仅自己可见</small>
+                            </h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-3 control-label">电子邮件 (必填)</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="email" name="email"
+                                       value="ashang.peng@aliyun.com" aria-required="true" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass1" class="col-sm-3 control-label">新密码</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="pass1" name="pass1">
+                                <span class="help-block">如果您想修改您的密码，请在此输入新密码。不然请留空。</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass2" class="col-sm-3 control-label">重复新密码</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="pass2" name="pass2">
+                                <span class="help-block">再输入一遍新密码。 提示：您的密码最好至少包含7个字符。为了保证密码强度，使用大小写字母、数字和符号（例如! " ? $ % ^ &amp; )）。</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-primary">保存更改</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.Content -->
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            $('.site_loading').animate({'width': '78%'}, 50);  //第三个节点
+        </script>        <!-- /.Sidebar -->
+    </div>
+</div>
+<script>
+    $(function () {
+//        $(".language-java").removeClass("language-java").addClass("prettyprint linenums java");
+//        prettyPrint();
+    })
+
+</script>
+</@layout>

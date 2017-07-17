@@ -1,0 +1,67 @@
+<#include "../_inc/_layout.html"/>
+<#macro script>
+    function doSubmit(){
+    $("#form").ajaxSubmit({
+    type : "post",
+    dataType : "json",
+    success : function(data) {
+    if(data.errorCode == 0){
+    toastr.success(data.message,'操作成功');
+    }else{
+    alert(data.message);
+    }
+    },
+    error : function() {
+    alert("信息提交错误");
+    }
+    });
+    }
+</#macro>
+<@layout active_id=p child_active_id=c>
+<!-- Main content -->
+<section class="content">
+    <div class="callout callout-info">
+        <h4>Jpress@DUZHI版本</h4>
+        <p>该模板基于Jpress定制，将基本本模板可以提供插件服务定制服务。联系QQ：77096178 @mail:<a href="mailto:ashang.peng@aliyun.com">ashang.peng@aliyun.com </a>
+            <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=d6c4a04a37a782379605e224f53da7f3f87791217ed896fd03c5a7afbd42a891"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="DUZHI_BLOG" title="DUZHI_BLOG"></a></p>
+        <p>官方网站:<a href="http://www.duzhi.me"> http://www.duzhi.me</a></p>
+        <p>DUZHI分支:<a href="http://git.oschina.net/duzhime/DUZHI_BLOG"> http://git.oschina.net/duzhime/DUZHI_BLOG</a></p>
+    </div>
+    <div class="box-header">
+        <button type="button" onclick="doSubmit()" class="btn btn-primary">保存更改</button>
+    </div>
+    <form action="${CPATH}/admin/option/save" method="POST" id="form" enctype="multipart/form-data">
+        <input type="hidden" name="ucode" value="${ucode}">
+        <input type="hidden" name="autosave" value="">
+        <div class="nav-tabs-custom ">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#currency" data-toggle="tab">通用</a></li>
+                <#list addons as addon>
+                    <li><a href="#${addon.addon.id}" data-toggle="tab">${addon.addon.title}</a></li>
+                </#list>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="currency">
+                    <#include "setting_include_currency.html"/>
+                </div>
+                <#list addons as addon>
+                    <div class="tab-pane fade" id="${addon.addon.id}">
+                        ${addon.html}
+                    </div>
+                </#list>
+
+            </div>
+        </div>
+        <!-- /.box -->
+        <div class="box-footer">
+            <button type="button" onclick="doSubmit()" class="btn btn-primary">保存更改</button>
+        </div>
+        <!-- /.row -->
+    </form>
+</section>
+
+
+</@layout>
+
+
+

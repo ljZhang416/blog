@@ -1,0 +1,17 @@
+
+    <li id="menu-item-796"
+        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-796">
+        <a href="/?from-bg-cr"><i class="fa fa-home"></i>HOME <span>首页</span></a></li>
+    <@jp.menus>
+    <#list menus as menu>
+        <li cid="menu-item"
+            class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-789">
+            <a href="${menu.url!}">
+                ${menu.title!}
+                <#if menu.isActive() >
+                    <span class="x-a-border"></span>
+                </#if>
+            </a>
+        </li>
+    </#list>
+</@jp.menus>

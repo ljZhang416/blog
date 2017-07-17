@@ -1,0 +1,230 @@
+<#include "_layout.html"/>
+<@layout>
+<script>
+$(function(){
+    jQuery.ajax({type: 'POST', xhrFields: {withCredentials: true}, dataType: 'html', url: "/counter", data: 'action=updateViewCount&sid=1'  + '&cid=' + ${content.id}, cache: false});
+})
+</script>
+<div class="breadcrumbs">
+    <div class="container clr">
+        <div id="breadcrumbs"><h1>
+            ${content.title!}&nbsp;<#include "include/_inc_title_tag.html" /></h1>
+            <div class="breadcrumbs-text">
+                <ol class="breadcrumb">
+                    <li><i class="fa fa-home fa-fw"></i>&nbsp;<a href="${OPTION('web_domain')}">Home</a></li>
+                    <li><#if content.getTaxonomyAsUrl('category')!="">
+                        ${content.getTaxonomyAsUrl('category')}
+                    <#else>
+                        未分类
+                    </#if>
+                        </li>
+                    <li class="active">${content.title!}</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main-wrap">
+    <div id="single-blog-wrap" class="container two-col-container">
+        <div id="main-wrap-left">
+                <#include "include/sitenews-list.html"/>
+            <!-- Content -->
+            <div class="content">
+                <!-- Post meta -->
+                <div id="single-meta">
+                    <span class="single-meta-author"><i class="fa fa-user"> </i>${(content.getMetadata('author'))!(content.user.nickname)!(content.user.username)!}</span>
+                    <span class="single-meta-time"><i class="fa fa-calendar">&nbsp;</i>${content.created?string('yyyy-MM-dd')!}</span>
+                    <span class="single-meta-category"><i class="fa fa-folder-open">&nbsp;</i><#if content.getTaxonomyAsUrl('category')!="">
+                        ${content.getTaxonomyAsUrl('category')}
+                    <#else>
+                        未分类
+                    </#if></span>
+                    <span class="single-meta-comments">|&nbsp;&nbsp;<i class="fa fa-comments"></i>&nbsp;<a href="#comments-main" class="commentbtn">${content.comment_count!'抢沙发'}</a></span>
+                    <span class="single-meta-views"><i class="fa fa-fire"></i>&nbsp;${content.viewCount!'0'}&nbsp;</span>
+                </div>
+                <!-- /.Post meta -->
+                <!-- Rating plugin -->
+                <div class="rates" pid="${content.id}">
+                <span class="ratesdes">文章评分		<span class="ratingCount">${content.getMetadata('_duzhi_ratingCount')!'90'}</span> 次，平均分		<span class="ratingValue">${content.getMetadata('_duzhi_ratingValue')!'5.0'}</span> ：
+                    <span id="star1" class="stars" title="1星" times="0" solid="y"><i class="fa fa-star"></i></span>
+                    <span id="star2" class="stars" title="2星" times="0" solid="y"><i class="fa fa-star"></i></span>
+                    <span id="star3" class="stars" title="3星" times="0" solid="y"><i class="fa fa-star"></i></span>
+                    <span id="star4" class="stars" title="4星" times="0" solid="y"><i class="fa fa-star"></i></span>
+                    <span id="star5" class="stars" title="5星" times="1" solid="y"><i class="fa fa-star"></i></span>
+                </span>
+                </div>		<!-- /.Rating plugin -->
+                <!-- Single article intro -->
+                <!-- /.Single article intro -->
+                <!-- Top ad -->
+                <div id="singletop-banner" class="banner">
+                </div>
+                <!-- /.Top ad -->
+                <div class="single-thumb">
+                </div>
+                <div class="single-text">
+
+                    ${content.showText!}
+                    <!-- Page links -->
+                    <!-- /.Page links -->
+                </div>
+                <div class="sg-tag">${content.getTaxonomyAsUrl('tag')!'未分类'}</div>		<!-- Single Copyright -->
+                <div class="sg-cp">
+                    <i class="fa fa-bullhorn">&nbsp;</i>
+                    <#if content.getMetadata('source')??>
+                        <#if content.getMetadata('source')?trim!=''>
+                            <p>本文转自于&nbsp;<a title="${content.getMetadata('source')?trim}" rel="nofollow" href="${content.getMetadata('source')?trim}">${content.getMetadata('source')?trim}</a></p>
+                            <p>如涉及作品内容、版权和其它问题，请在30日内与本网联系，我们将在第一时间删除内容！</p>
+                        </#if></#if>
+                    <p>除特别注明外，本站所有文章均为<a href="${OPTION('web_domain')}" title="duzhi" target="_blank">duzhi</a>原创，转载请注明出处来自<a href="${OPTION('web_domain')}/${content.url}" title="${content.title}">${OPTION('web_domain')}${content.url}</a></p>		</div>
+                <!-- /.Single Copyright -->
+                <!-- Bottom ad -->
+                <div id="singlebottom-banner" class="banner">
+                </div>
+                <!-- /.Bottom ad -->
+                <!-- Single Activity -->
+                <div class="sg-act">
+                    <div class="mark-like-btn tinlike clr">
+                        <a class="share-btn like-btn <#if _USER??>
+                        <#if _USER.metadata('like',content.id?string)??>love-yes</#if>
+                        </#if>
+            " pid="${content.id}" href="javascript:;" title="点击喜欢">
+                            <i class="fa fa-heart"></i>
+                            <span>${content.metadata('like')!'0'}</span>人喜欢 		</a>
+                        <a class="share-btn collect collect-no" pid="${content.id}" href="javascript:;" uid="1" title="点击收藏">
+                            <i class="fa fa-star"></i>
+                            <span>0人收藏 </span>
+                        </a>
+                    </div>
+                    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare baidu-share">
+                        <a href="#" class="bds_tsina weibo-btn share-btn" data-cmd="tsina">
+                            <i class="fa fa-weibo"></i>分享到微博 	</a>
+                        <a href="#" class="bds_weixin weixin-btn share-btn">
+                            <i class="fa fa-weixin"></i>分享到朋友圈 		<div id="weixin-qt" style="display: none; top: 80px; opacity: 1;">
+                            <img src="http://bshare.optimix.asia/barCode?site=weixin&url=${OPTION('web_domain')}/${content.url}}" width="120">
+                            <div id="weixin-qt-msg">打开微信，点击底部的“发现”，使用“扫一扫”即可将网页分享至朋友圈。</div>
+                        </div>
+                        </a>
+                        <a href="#" class="bds_more more-btn share-btn" data-cmd="more"><i class="fa fa-share-alt fa-flip-horizontal"></i><span class="pc-text">更多</span><span class="mobile-text">分享</span></a>
+                    </div>		</div>
+                <!-- /.Single Activity -->
+                <!-- Single Author Info -->
+                <div class="sg-author clr">
+                    <div class="img"><img alt="" src="${CTPATH}/images/qrcode_for_gh_1233eeff1166_258.jpg" srcset="" class="avatar avatar-100 photo" height="100" width="100"></div>
+                    <div class="sg-author-info">
+                        <div class="word">
+                            <div class="wordname">关于<a href="#" title="由${content.user.nickname!content.user.username!}发布" rel="author">${content.user.nickname!content.user.username!}</a></div>
+                            <div class="authordes">${content.user.signature!'该用户很懒!'}</div>
+                            <div class="authorsocial">
+                                <#if content.user.qq??>
+                                <span class="social-icon-wrap">
+                                    <a class="as-img as-qq" href="http://wpa.qq.com/msgrd?v=3&amp;uin=${content.user.qq!}&amp;site=qq&amp;menu=yes" title="QQ交谈"><i class="fa fa-qq"></i></a></span>
+                                </#if>
+                                <#if content.user.email??>
+                                    <span class="social-icon-wrap">
+                                    <a class="as-img as-email" href="mailto:${content.user.email!}" title="给我写信">
+                                        <i class="fa fa-envelope"></i></a></span>
+                                </#if>
+                                <#if content.user.weibo??>
+                                    <span class="social-icon-wrap">
+                                    <a class="as-img as-weibo" href="mailto:${content.user.weibo!}" title="给我写信">
+                                        <i class="fa fa-weibo"></i></a></span>
+                                </#if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>		<!-- /.Single Author Info -->
+                <!-- Related Articles -->
+                <div class="relpost">
+                    <!--h3 class="multi-border-hl"><span>相关文章</span></h3-->
+                    <ul>
+                        <@jp.contents module="article"   count="4" orderBy="comment_count">
+                        <#list contents as content>
+                        <li>
+                            <div class="relpost-inner">
+                                <div class="relpost-inner-pic">
+                                    <a href="${content.url}" title="${content.title}" class="">
+                                        <div class="thumb-img">
+                                            <img class="box-hide" src="${CTPATH}/images/image-pending.gif"
+                                                 data-original="${content.image}">
+                                            <span><i class="fa fa-pencil"></i></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="relpost-inner-text">
+                                    <a href="${content.url}" rel="bookmark" title="${content.title}">${content.title}</a>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                        </#list>
+                    </@jp.contents>
+                    </ul>
+                </div>
+                <!-- /.Related Articles -->
+                <!-- Prev or Next Article -->
+                <!--<div class="navigation">-->
+                    <!--<div class="navigation-left">-->
+                        <!--<span>上一篇</span>-->
+                        <!--<a href="http://115.159.78.65/2016_775_11.html" rel="prev">Java 深拷贝，浅拷贝的关系</a><a>&nbsp;</a>			</div>-->
+                    <!--<div class="navigation-right">-->
+                        <!--<span>下一篇</span>-->
+                        <!--<a>&nbsp;</a><a href="http://115.159.78.65/2016_1_12.html" rel="next">世界，您好！</a>			</div>-->
+                <!--</div>-->
+                <!-- /.Prev or Next Article -->
+
+                <!-- Comments ad1 -->
+                <div id="cmnt-banner1" class="banner">
+                </div>
+                <!-- /.Comments ad1 -->
+
+            </div>
+            <!-- /.Content -->
+            <!-- Comments -->
+            <div id="comments-main" class="comments-main">
+                <!-- 多说评论框 start -->
+                <div class="ds-thread" data-thread-key="s.duzhi.me_url_${content.id}" data-title="${content.title}" data-url="${OPTION('web_domain')}${content.url}"></div>
+                <!-- 多说评论框 end -->
+                <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                <script type="text/javascript">
+                    var duoshuoQuery = {short_name:"${OPTION('duzhi_duoshuo_shortName')}"};
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';ds.async = true;
+                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0]
+                        || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- 多说公共JS代码 end -->
+            </div>		<!-- /.Comments -->
+        </div>
+        <!-- Sidebar -->
+        <script type="text/javascript">
+            $('.site_loading').animate({'width':'55%'},50);  //第二个节点
+        </script>
+        <div id="sidebar" class="clr">
+            <#include "include/_search_box.html" />
+            <#include "include/_tag_box.html" />
+            <#include "include/_tintabs_box.html" />
+            <#include "include/_tinslider_box.html" />
+            <#include "include/_weixin_box.html" />
+            <div class="floatwidget-container">
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $('.site_loading').animate({'width':'78%'},50);  //第三个节点
+        </script>		<!-- /.Sidebar -->
+    </div>
+</div>
+<script>
+    $(function () {
+//        $(".language-java").removeClass("language-java").addClass("prettyprint linenums java");
+//        prettyPrint();
+    })
+
+</script>
+</@layout>

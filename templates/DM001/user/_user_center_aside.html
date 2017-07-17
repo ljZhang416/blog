@@ -1,0 +1,37 @@
+
+
+<aside class="pagesidebar">
+
+    <li id="page-sort-menu-btn"><a href="#">菜单</a></li>
+    <ul class="pagesider-menu user-tab">
+        <li
+        <#if action??  && action ='index'>class="active"</#if>
+        >
+        <a href="${CPATH}/user/center?tab=post">我的控制台</a>
+        </li>
+        <#if USER??>
+            <li
+            <#if !action?? >class="active"</#if>
+            ><a href="${CPATH}/user/${USER.id}.html?tab=profile">修改资料</a></li>
+            <li
+            <#if action?? && action ='crop' >class="active"</#if>
+            ><a href="${CPATH}/user/center/crop">修改图标</a></li>
+            <li
+            <#if action?? && action ='password' >class="active"</#if>
+            ><a href="${CPATH}/user/center/password">修改密码</a></li>
+        <li
+        <#if tab??  && tab ='collect'>class="active"</#if>
+        >
+        <a href="#">收藏</a></li>
+        <li
+        <#if action??  && action ='newpost'>class="active"</#if>
+        >
+        <a href="${CPATH}/user/center/newpost.html?m=dm">投稿</a></li>
+            <li
+            <#if action??  && action ='postlist'>class="active"</#if>
+            >
+            <a href="${CPATH}/user/center/postlist.html?m=dm">未审核</a></li>
+        </#if>
+
+    </ul>
+</aside>

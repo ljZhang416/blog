@@ -1,0 +1,64 @@
+<link href="${CTPATH}/assets/css/main.css" rel="stylesheet" />
+<link rel="stylesheet" href="${CTPATH}/assets/cropper/cropper.css" />
+<script type="text/javascript" src="${CTPATH}/assets/cropper/cropper.js" ></script>
+<script type="text/javascript" src="${CTPATH}/assets/cropper/main.js" ></script>
+<div class="container" id="crop-avatar">
+    <!-- Current avatar -->
+    <div class="avatar-view" title="Change the avatar">
+        <img src="${USER.avatar!CTPATH+'/images/qrcode_for_gh_1233eeff1166_258.jpg'}" alt="Avatar">
+    </div>
+    <#if USER??>
+
+    <!-- Cropping modal -->
+    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form class="avatar-form" action="/member/save" enctype="multipart/form-data" method="post">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="avatar-modal-label">Change Avatar</h4>
+                    </div>
+                    <input type="text" name="option" id="option" value="saveCropper" hidden/>
+                    <div class="modal-body">
+                        <div class="avatar-body">
+                            <!-- Upload image and data -->
+                            <div class="avatar-upload">
+                                <input class="avatar-src" name="avatar_src" type="hidden">
+                                <input class="avatar-data" name="avatar_data" type="hidden">
+                                <label for="avatarInput">选择图片</label>
+                                <input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
+                            </div>
+                            <div class="row avatar-btns">
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary btn-block avatar-save" type="submit">Done</button>
+                                </div>
+                            </div>
+                            <!-- Crop and preview -->
+                            <div class="row">
+                                <div  style="display: inline">
+                                    <div class="avatar-wrapper"></div>
+                                </div>
+                                <div  style="display: inline">
+                                    <div class="avatar-preview preview-lg"></div>
+                                    <div class="avatar-preview preview-md"></div>
+                                    <div class="avatar-preview preview-sm"></div>
+                                </div>
+                            </div>
+                            <div class="row avatar-btns">
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary btn-block avatar-save" type="submit">Done</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                      <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div><!-- /.modal -->
+
+    <!-- Loading state -->
+    <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+    </#if>
+</div>

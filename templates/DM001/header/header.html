@@ -1,0 +1,51 @@
+<header class="header-wrap" id="nav-scroll">
+    <div class="nav-wrap">
+        <div class="logo-title">
+            <a href="${OPTION('web_domain')}" alt="DUZHI" title="DUZHI">
+                {${WEB_NAME}}
+            </a>
+        </div>
+        <div class="toggle-menu">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="search-btn-click">
+            <i class="fa fa-search"></i>
+        </div>
+        <div id="userservice">
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                    var timestamp = Date.parse(new Date());
+                    timestamp = timestamp / 1000;
+                    $.ajax({url:"/member/loginService?"+timestamp,success:function(result){
+                        $("#userservice").html(result);
+                        $('.login-yet-click').bind('mouseover',function(){
+                            if(!$(this).children('.user-tabs').is(":animated"))$(this).children('.user-tabs').slideDown();
+                        }).bind('mouseleave',function(){
+                            $(this).children('.user-tabs').slideUp();
+                        })
+                    }});
+
+                });
+        </script>
+
+        <#include "../include/focus-us.html" />
+
+        <nav id="pri-nav" class="site-navigation pri-nav elan_menu" role="navigation">
+            <div class="menu-foot_menu-container"><ul id="menu-foot_menu" class="nav-menu">
+                <#include "../include/menus.html" />
+            </ul></div>
+        </nav>
+
+    </div>
+    <div class="clr"></div>
+    <div class="site_loading" style="width: 100%; display: none;"></div>
+
+    <div class="header-search-slide" style="display: none;">
+        <form method="get" id="searchform-slide" class="searchform" action="/s" role="search">
+            <input type="search" class="field" name="k" value="" placeholder="输入关键词并回车" required="">
+            <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+</header>

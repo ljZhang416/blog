@@ -1,0 +1,49 @@
+<header class="header-wrap" id="nav-scroll">
+    <div class="nav-wrap">
+        <div class="logo-title">
+            <a href="${OPTION('web_domain')}" alt="DUZHI" title="DUZHI">
+                {${WEB_NAME}}
+            </a>
+        </div>
+        <div class="toggle-menu">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="search-btn-click">
+            <i class="fa fa-search"></i>
+        </div>
+        <#if _USER??>
+            <#include "../include/_layout_login_success.html" />
+            <#else>
+                <div id="login-reg">
+                    <span id="user-login" class="1user-login ie_pie only-login"><a href="javascript:login();">登录</a></span>
+                    <script type="text/javascript">
+                        function login() {
+                            var href = window.location.href;
+                            var url = "/user/login?goto="+href;
+                            window.location.href=url;
+                        }
+                    </script>
+
+                </div>
+        </#if>
+
+        <#include "../include/focus-us.html" />
+
+        <nav id="pri-nav" class="site-navigation pri-nav elan_menu" role="navigation">
+            <div class="menu-foot_menu-container"><ul id="menu-foot_menu" class="nav-menu">
+                <#include "../include/menus.html" />
+            </ul></div>
+        </nav>
+
+    </div>
+    <div class="clr"></div>
+    <div class="site_loading" style="width: 100%; display: none;"></div>
+
+    <div class="header-search-slide" style="display: none;">
+        <form method="get" id="searchform-slide" class="searchform" action="/s" role="search">
+            <input type="search" class="field" name="k" value="" placeholder="输入关键词并回车" required="">
+            <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+</header>

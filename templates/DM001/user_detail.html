@@ -1,0 +1,16 @@
+<#include "user/_user_center_layout.html" />
+<@layout>
+<@userLayout>
+<#if !tab??  ||  tab ='profile' >
+    <#include "user/_user_profile.html"/>
+</#if>
+<#if tab?? && tab='post'>
+    <#include "user/_user_post.html"/>
+</#if>
+
+
+<script type="text/javascript">
+    $('.site_loading').animate({'width': '78%'}, 50);  //第三个节点
+</script>        <!-- /.Sidebar -->
+</@userLayout>
+</@layout>

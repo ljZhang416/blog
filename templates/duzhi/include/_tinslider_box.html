@@ -1,0 +1,36 @@
+<div id="tinslider-2" class="widget widget_tin_slider">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.tin-slider').flexslider({
+                animation: "fade",
+                direction: "horizontal",
+                easing: "swing",
+                pauseOnHover: true,
+                slideshowSpeed: 5000,
+                animationDuration: 600,
+                prevText: "",
+                nextText: "",
+                directionNav: false,
+                randomize: true
+            });
+        });
+    </script>
+    <div class="tin-slider">
+        <ul class="slides">
+            <@jp.contents module="article"  count="4" orderBy="comment_count">
+            <#list contents as content>
+            <li>
+                <a href="${content.url}" title="${content.title}">
+                    <img src="${content.image}"
+                         alt="${content.title}" style="width:350px;height:250px;"/>
+                </a>
+                <div class="widget-slider-title trans">
+                    <a href="${content.url}" rel="bookmark" title="${content.title}">${content.title}</a>
+                </div>
+            </li>
+            </#list>
+        </@jp.contents>
+        </ul>
+    </div>
+</div>

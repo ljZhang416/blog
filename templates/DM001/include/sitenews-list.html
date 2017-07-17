@@ -1,0 +1,22 @@
+<div id="sitenews-wrap" class="container">
+    <div class="contextual bg-sitenews">
+        <i class="fa fa-volume-up" style=""></i>
+        <div id="news-scroll-zone00" class="scroll" style="width:80%;height:25px;line-height:25px;border:#ccc 0px solid;overflow:hidden">
+            ${OPTION('duzhi_sitenews')}
+        </div>
+        <span class="infobg-close" style="color:#aaa;"><i class="fa fa-close"></i></span>
+    </div>
+</div>
+<script>
+// 简单滚动
+function AutoScroll(obj){
+$(obj).find("div").animate({
+marginTop:"-25px"
+},1500,function(){
+$(this).css({marginTop:"0px"}).find("li:first").appendTo(this);
+});
+}
+$(function(){
+setInterval('AutoScroll(".scroll")',3000)
+});
+</script>

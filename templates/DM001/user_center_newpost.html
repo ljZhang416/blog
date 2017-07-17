@@ -1,0 +1,105 @@
+<#include "user/_user_center_layout.html" />
+<@layout>
+<@userLayout>
+<form id="info-form" class="form-horizontal" role="form" method="POST" action="${CPATH}/member/save">
+    <input type="hidden" name="content.module" value="${m}"/>
+    <input type="hidden" name="option" value="post"/>
+    <div class="page-header" id="tougao">
+        <h3 id="info">投稿
+            <small></small>
+        </h3>
+    </div>
+    <div class="form-group">
+        <label for="content.title" class="col-sm-3 control-label">发布区域</label>
+        <div class="col-sm-9">
+            <a <#if m?? && m='dm'>class="demo_tag"</#if> href="?m=dm">演示区</a>&nbsp;<a <#if m?? && m='article'>class="demo_tag"</#if> href="?m=article">日志</a>&nbsp;
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="content.title" class="col-sm-3 control-label">标题</label>
+        <div class="col-sm-9">
+            <input class="form-control input-md" type="text" id="content.title" name="content.title" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="content.title" class="col-sm-3 control-label">分类</label>
+        <div class="col-sm-9">
+            <select name="taxonomys" class="form-control">
+                <@jp.taxonomys module=m>
+                <#list taxonomys as taxonomy>
+                    <option value="${taxonomy.id!}">${taxonomy.title!}</option>
+                </#list>
+            </@jp.taxonomys>
+            </select>
+        </div>
+    </div>
+    <#if m='dm'>
+        <div class="form-group">
+            <label for="content.title" class="col-sm-3 control-label">演示区域</label>
+            <div class="col-sm-9">
+                <input class="form-control input-md" type="text" id="demo" name="demo" value="">
+                <p class="help-block">请提供演示链接，可以为空</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="content.title" class="col-sm-3 control-label">下载链接</label>
+            <div class="col-sm-9">
+                <input class="form-control input-md" type="text" id="downloadUrl" name="downloadUrl"
+                       value="">
+                <p class="help-block">建议上传百度云，提供分享链接</p>
+            </div>
+        </div>
+    </#if>
+    <div class="form-group">
+        <label for="content.title" class="col-sm-3 control-label"></label>
+        <div class="col-sm-offset-3 col-sm-9">
+            <img style="display: inline" onclick="this.src='/captcha?'+new Date();" src="/captcha?1"/>
+            <input type="input" name="_register_captcha" class="form-control" style="width: 20%" />
+        </div>
+    </div>
+    <script  type='text/javascript' src="${CTPATH}/assets/ckeditor/ckeditor.js?0009"></script>
+    <div class="col-sm-12">
+
+        <textarea class="form-control" id="Content" name="content.text" rows="15"></textarea>
+    </div>
+    <script>
+        CKEDITOR.replace( 'Content' );
+    </script>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <button id="savebutton" type="button" class="btn btn-primary">保存稿件</button>
+            <div id="editRealMsgImg">提交中....</div>
+        </div>
+    </div>
+
+    <script>
+        $("#editRealMsgImg").hide();
+        $("#savebutton").click(function () {
+            var content= CKEDITOR.instances.Content.getData();
+            $("#Content").val(content);
+            jQuery.ajax({
+                url: '${CPATH}/member/save.html',
+                data: $('#info-form').serialize(),
+                type: "POST",
+                beforeSend: function () {
+                    $('#savebutton').hide();
+                    $('#editRealMsgImg').show();
+                },
+                success: function (data) {
+                    if (data.errorCode != 1) {
+                        alert(data.message);
+                        $('#editRealMsgImg').hide();
+                        $('#savebutton').show();
+                    } else if(data.errorCode ==1){
+                        alert("已经提交成功，等待管理员审核");
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
+</form>
+</@userLayout>
+</@layout>

@@ -1,0 +1,89 @@
+<#include "_layout.html"/>
+<@layout>
+<div id="main-wrap">
+    <#include "include/sitenews-list.html"/>
+</div>
+<div id="single-blog-wrap" class="container two-col-container">
+    <div id="main-wrap-left">
+        <#include "include/index-stickys.html"/>
+        <!-- /.Stickys -->
+        <div class="bloglist-container clr">
+            <h2 class="home-heading clr">
+                <span class="heading-text-blog"><i class="fa fa-chevron-right"></i></i>最新文章</span>
+            </h2>
+            <@jp.indexPage module="article,dm">
+            <#list contents as content>
+                <article class="home-blog-entry col span_1 clr">
+                    <a href="${content.url}" title="${content.title}"
+                       class="fancyimg home-blog-entry-thumb">
+                        <div class="thumb-img">
+                            <img  src="${content.image}" data-original="${content.image}"  alt="${content.title}">
+                            <span><i class="fa fa-expand"></i></span>
+                        </div>
+                    </a>
+                    <div class="home-blog-entry-text clr">
+                        <h3>
+                            <a href="${content.url}"
+                               title="${content.title}">${content.title}</a>&nbsp;
+                            <#if content.getMetadata('source')??>
+                                <#if content.getMetadata('source')?trim!=''>
+                                    <span class="item_forword">转</span>&nbsp;
+                                </#if>
+                            </#if>
+                            </h3>
+                        <!-- Post meta -->
+                        <div class="meta">
+                            <span class="postlist-meta-cat"><i class="fa fa-bookmark"></i>${content.getTaxonomyAsUrl('category')!'未分类'}</span>
+                            <span class="postlist-meta-time"><i class="fa fa-calendar"></i>${content.created!string("yyyy-MM-dd")}</span>
+                            <span class="postlist-meta-views"><i
+                                    class="fa fa-fire"></i>浏览: ${content.view_count!'0'}</span>
+                            <span class="postlist-meta-comments"><i class="fa fa-comments"></i><a
+                                    href="#respond">评论: ${content.comment_count!'0'}</a></span>
+                        </div>
+                        <!-- /.Post meta -->
+                        <p>
+                            ${content.summaryWithLen(250)!}
+                            <a rel="nofollow" class="more-link" style="text-decoration:none;"
+                               href="${content.url}"></a>
+                        </p>
+                    </div>
+
+                    <div class="clear"></div>
+                </article>
+            </#list>
+
+
+            <div class="clear"></div>
+            <div class="pagination">
+                <@pagination>
+                <#list pages as page>
+                <span class='pg-item'>
+            <span class='${page.style!}'>
+                <a href="${page.url!}">${page.text!}</a>
+            </span></span>
+                </#list>
+            </@pagination>
+            </div>
+            </@jp.indexPage>
+        </div>
+    </div>
+<script type="text/javascript">
+$('.site_loading').animate({'width':'55%'},50);
+</script>
+    <div id="sidebar" class="clr">
+        <#include "include/_search_box.html" />
+
+        <#include "include/_tag_box.html" />
+       <#include "include/_tintabs_box.html" />
+      <#include "include/_tinslider_box.html" />
+        <#include "include/_weixin_box.html" />
+     <div class="floatwidget-container">
+    </div>
+</div>
+<script type="text/javascript">
+$('.site_loading').animate({'width':'78%'},50);
+</script>
+</div>
+<!-- Stickys -->
+</div>
+</@layout>

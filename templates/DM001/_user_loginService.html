@@ -1,0 +1,14 @@
+<#if _USER??>
+    <#include "include/_layout_login_success.html" />
+    <#else>
+        <div id="login-reg">
+            <span id="user-login" class="1user-login ie_pie only-login"><a href="javascript:login();">登录</a></span>
+            <script type="text/javascript">
+                function login() {
+                    var href = window.location.href;
+                    var url = "/user/login?goto="+href;
+                    window.location.href=url;
+                }
+            </script>
+        </div>
+</#if>

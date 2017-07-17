@@ -1,0 +1,52 @@
+<@jp.userContentPage status='draft'>
+<ul class="user-msg">
+    <li class="tip">草稿箱中有 ${page.totalRow} 篇文章</li>
+</ul>
+
+<#list page.getList() as content>
+    <article class="archive thumb clr">
+        <h3>
+            <a href="${content.url}" title="${content.title}" target="_blank">${content.title}</a>
+        </h3>
+        <div class="postlist-meta">
+            <div class="postlist-meta-author item"><i class="fa fa-user"></i>&nbsp;${content.user.nickName!content.user.username!}</div>
+            <div class="postlist-meta-time item"><i class="fa fa-clock-o"></i>&nbsp;${content.created?string("yyyy年MM月dd日")}</div>
+            <div class="postlist-meta-views item"><i class="fa fa-fire"></i>&nbsp;${content.viewCount}</div>
+            <div class="postlist-meta-category item"><i class="fa fa-folder-open"></i>&nbsp;
+                <#if content.getTaxonomyAsUrl('category')!="">
+                    ${content.getTaxonomyAsUrl('category')}
+                    <#else>
+                        未分类
+                </#if>
+            </div>
+            <div class="postlist-meta-comments item"><i class="fa fa-comments"></i>&nbsp;<a
+                    href="#">${content.commentCount}</a></div>
+            <div class="postlist-meta-like item like-btn" style="float:right;" pid="779" title="点击喜欢"><i
+                    class="fa fa-heart"></i>&nbsp;<span>0</span>&nbsp;</div>
+            <div class="postlist-meta-collect item collect collect-no" style="float:right;" pid="779" uid="1" title="点击收藏">
+                <i class="fa fa-star"></i>&nbsp;<span>0</span>&nbsp;</div>
+        </div>
+        <p class="archive-excerpt">
+            ${content.summaryWithLen(200)!}
+            <a rel="nofollow" class="more-link" style="text-decoration:none;" href="${content.url}"></a>
+        </p>
+        <a href="${content.url}" title="${content.title}" class="fancyimg home-blog-entry-thumb">
+            <div class="thumb-img">
+                <img src="${content.image}"
+                     alt="${content.title}">
+                <span><i class="fa fa-expand"></i></span>
+            </div>
+        </a>
+    </article>
+</#list>
+
+<@pagination>
+<div class="pagination">
+    <#list pages as page>
+   <span class="pg-item"><a
+           class="page-numbers" href="${page.url}">${page.text}</a></span>
+
+    </#list>
+</div>
+</@pagination>
+</@jp.userContentPage>

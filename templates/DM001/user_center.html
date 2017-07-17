@@ -1,0 +1,43 @@
+<#include "user/_user_center_layout.html" />
+<@layout>
+<@userLayout>
+
+<#if action?? && action='postlist'>
+    <div class="user-basic-info clr">
+        <a class="user-avatar" href="#">
+            <img alt=""
+                 src="${USER.avatar!CTPATH+'/images/qrcode_for_gh_1233eeff1166_258.jpg'}"
+                 srcset="${USER.avatar!CTPATH+'/images/qrcode_for_gh_1233eeff1166_258.jpg'}"
+                 class="avatar avatar-80 photo" height="80" width="80"> </a>
+        <div class="user-text">
+            <h4 class="user-display-name">${USER.username}</h4>
+            <p class="user-register-time">${USER.created?string("yyyy年MM月dd日")}<span>注册</span>${USER.logged?string("yyyy年MM月dd日")}<span>上次登录</span>
+            </p>
+            <p class="user-description">${USER.signature!} </p>
+        </div>
+    </div>
+    <#include "user/_user_collect.html"/>
+    <#elseif action??&&action="crop">
+        <#include "user/_user_crop.html" />
+        <#elseif action??&&action="password">
+            <#include "user/_user_password.html" />
+    <#else>
+    <div class="user-basic-info clr">
+        <a class="user-avatar" href="#">
+            <img alt=""
+                 src="${USER.avatar!CTPATH+'/images/qrcode_for_gh_1233eeff1166_258.jpg'}"
+                 srcset="${USER.avatar!CTPATH+'/images/qrcode_for_gh_1233eeff1166_258.jpg'}"
+                 class="avatar avatar-80 photo" height="80" width="80"> </a>
+        <div class="user-text">
+            <h4 class="user-display-name">${USER.username}</h4>
+            <p class="user-register-time">${USER.created?string("yyyy年MM月dd日")}<span>注册</span>${USER.logged?string("yyyy年MM月dd日")}<span>上次登录</span>
+            </p>
+            <p class="user-description">${USER.signature!} </p>
+        </div>
+    </div>
+    <#include "user/_user_post.html"/>
+</#if>
+
+
+</@userLayout>
+</@layout>

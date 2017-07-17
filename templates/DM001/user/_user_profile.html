@@ -1,0 +1,171 @@
+<#if USER?? && USER.id=user.id>
+    <form id="info-form" class="form-horizontal" role="form" method="POST" action="${CPATH}/member/save">
+        <input type="hidden" name="option" value="user"/>
+        <input type="hidden" name="_wpnonce" value="47bd95b23d">
+        <input type="hidden" name="user.id" value="${user.id}">
+        <div class="page-header">
+            <h3 id="info">基本信息
+                <small>公开资料</small>
+            </h3>
+        </div>
+        <div class="form-group">
+            <label for="nickname" class="col-sm-3 control-label">昵称</label>
+            <div class="col-sm-9">
+                <input class="form-control input-md" type="text" id="user.nickname" name="user.nickname" value="${(user.nickname)!}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="user.email" class="col-sm-3 control-label">邮箱</label>
+            <div class="col-sm-9">
+                <input class="form-control input-md" type="text" id="user.email" name="user.email" value="${(user.email)!}">
+            </div>
+            <span class="help-block">请填入邮箱，如没有请从mail.qq.com申请</span>
+        </div>
+
+        <div class="form-group">
+            <label for="user.site" class="col-sm-3 control-label">站点</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="user.site" name="user.site" value="${user.site!}">
+            </div>
+            <span class="help-block">请以http://打头</span>
+        </div>
+
+        <div class="form-group">
+            <label for="user.signature" class="col-sm-3 control-label">个人说明</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" rows="3" name="user.signature" id="user.signature">${user.signature!}</textarea>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h3 id="info">扩展资料
+                <small>社会化信息等</small>
+            </h3>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">新浪微博</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="user.weibo" name="user.weibo" value="${user.weibo!}">
+                <span class="help-block">请填写新浪微博账号</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">QQ </label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="user.qq" name="user.qq"
+                       value="${user.qq!}">
+                <span class="help-block">请输入QQ号:可从http://www.qq.com申请</span>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Linkedin</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="user.linkedin" name="user.linkedin" value="${user.linkedin!}">
+                <span class="help-block">请填写Linkedin账号</span>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">微信二维码</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="user.wechat" name="user.wechat" value="${user.wechat!}" />
+                <span class="help-block">请填写微信账号二维码图片的Url地址</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">支付宝收款二维码</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="tin_donate" name="tin_donate" value="">
+                <span class="help-block">请填写支付宝收款二维码图片的Url地址</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <button type="button" id="profile_sub" class="btn btn-primary">提交资料</button>
+                <div id="editRealMsgImg">提交中....</div>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h3 id="open">推广链接
+                <small>可赚取积分</small>
+            </h3>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">推广链接</label>
+            <div class="col-sm-9">
+                <input type="text" disabled="disabled" class="form-control tin_aff_url" value="${OPTION('web_domain')}/?aff=1">
+            </div>
+        </div>
+        <script>
+                $("#editRealMsgImg").hide();
+                $("#profile_sub").click(function () {
+                    jQuery.ajax({
+                        url: '${CPATH}/member/save.html',
+                        data: $('#info-form').serialize(),
+                        type: "POST",
+                        beforeSend: function () {
+                            $('#profile_sub').hide();
+                            $('#editRealMsgImg').show();
+                        },
+                        success: function (data) {
+                            if (data.errorCode != 1) {
+                                alert(data.message);
+                                $('#editRealMsgImg').hide();
+                                $('#profile_sub').show();
+                            } else if(data.errorCode ==1){
+                                alert("更新成功");
+                                $('#editRealMsgImg').hide();
+                                $('#profile_sub').show();
+                            }
+                        }
+                    });
+                    return false;
+                });
+
+        </script>
+    </form>
+    <#else>
+           <div class="user-basic-info clr">
+                   <a class="user-avatar" href="#">
+                       <img alt=""
+                            src="${user.avatar}"
+                            srcset="${user.avatar}"
+                            class="avatar avatar-80 photo" height="80" width="80"> </a>
+                   <div class="user-text">
+                       <h4 class="user-display-name">${user.nickname!user.username!}</h4>
+                       <p class="user-register-time">${user.created?string("yyyy年MM月dd日")}<span>注册</span>2017年02月16日<span>上次登录</span>
+                       </p>
+                       <p class="user-description">${user.signature!} </p>
+                   </div>
+               </div>
+
+        <ul class="user-msg">
+            <li class="tip">${user.nickname!user.username!}来DUZHI已经79天了</li>
+        </ul>
+        <table id="author-profile">
+            <tbody>
+            <tr>
+                <td class="title">头像来源:</td>
+                <td>默认头像</td>
+            </tr>
+            <tr>
+                <td class="title">昵称:</td>
+                <td>${user.nickname!}</td>
+            </tr>
+            <tr>
+                <td class="title">站点:</td>
+                <td>${user.site!}</td>
+            </tr>
+            <tr>
+                <td class="title">个人说明:</td>
+                <td>${user.signature!}</td>
+            </tr>
+            </tbody>
+        </table>
+</#if>

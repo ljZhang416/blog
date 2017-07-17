@@ -1,0 +1,12 @@
+<div id="search-2" class="widget widget_search">
+    <form method="get" class="searchform themeform" action="/s">
+        <div>
+            <input type="text" class="search" name="k"
+                   onblur="if(this.value=='')this.value='Search..';"
+                   onfocus="if(this.value=='Search..')this.value='';" value="${keyword!'Search..'}"
+                   maxlength="20" required="required"/>
+            <input type="hidden" name="nccode" value="${nccode}">
+            <input type="hidden" name="charset" value="UTF-8">
+        </div>
+    </form>
+</div>

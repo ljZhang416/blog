@@ -1,0 +1,112 @@
+<#include "_layout.html"/>
+<@layout>
+<!--<div class="breadcrumbs">
+    <div class="container clr">
+        <div id="breadcrumbs"><h1>
+            <i class="fa fa-user"></i> 用户注册&登录</h1>
+            <div class="breadcrumbs-text">
+                <a href="/?shouye"> 主页</a>&nbsp;>>&nbsp;注册&登录
+            </div>
+        </div>
+    </div>
+</div>--><!-- Header Banner -->
+
+<div class="container two-col-container">
+    <div id="main-wrap-left">
+        <div id="main-wrap">
+            <#include "include/sitenews-list.html"/>
+        </div>
+
+        <div style="max-width: 400px;margin:auto;margin-top: 10px">
+            <div id="asign" class="asign">
+                <div class="part loginPart">
+                    <form id="login1" action="?login" method="post" novalidate="novalidate">
+                        <div id="register-active" class="switch"><i class="fa fa-toggle-on"></i><a href="javascript:void(0)">切换注册</a></div>
+                        <h3>登录<p class="status"></p></h3>
+                        <p>
+                            <label class="icon" for="username"><i class="fa fa-user"></i></label>
+                            <input class="input-control" id="username" type="text" placeholder="请输入用户名" name="username"
+                                   required="" aria-required="true">
+                        </p>
+                        <p>
+                            <label class="icon" for="password"><i class="fa fa-lock"></i></label>
+                            <input class="input-control" id="password" type="password" placeholder="请输入密码"
+                                   name="password" required="" aria-required="true">
+                        </p>
+                        <p class="safe">
+                            <label class="remembermetext" for="rememberme"><input name="rememberme" type="checkbox"
+                                                                                  checked="checked" id="rememberme"
+                                                                                  class="rememberme" value="forever">记住我的登录</label>
+                            <a class="lost" href="http://115.28.129.30/wp-login.php?action=lostpassword">忘记密码 ?</a>
+                        </p>
+                        <p>
+                            <input class="submit" type="submit" value="登录" name="submit">
+                        </p>
+                        <a class="close"><i class="fa fa-user-plus"></i></a>
+                        <input type="hidden" id="security" name="security" value="78426fe0d5">
+                        <input type="hidden" name="_wp_http_referer" value="/">
+                    </form>
+                </div>
+                <div class="part registerPart" style="display: none">
+                    <form id="register1" action="/_user/reg" method="post" novalidate="novalidate">
+                        <div id="login-active" class="switch"><i class="fa fa-toggle-off"></i><a href="javascript:void(0)">切换登录</a></div>
+                        <h3>注册<p class="status"></p></h3>
+                        <p>
+                            <label class="icon" for="user_name"><i class="fa fa-user"></i></label>
+                            <input class="input-control" id="user_name" type="text" name="user_name"
+                                   placeholder="输入英文用户名" required="" aria-required="true">
+                        </p>
+                        <p>
+                            <label class="icon" for="user_email"><i class="fa fa-envelope"></i></label>
+                            <input class="input-control" id="user_email" type="email" name="user_email"
+                                   placeholder="输入常用邮箱" required="" aria-required="true">
+                        </p>
+                        <p>
+                            <label class="icon" for="user_pass"><i class="fa fa-lock"></i></label>
+                            <input class="input-control" id="user_pass" type="password" name="user_pass"
+                                   placeholder="密码最小长度为6" required="" aria-required="true">
+                        </p>
+                        <p>
+                            <label class="icon" for="user_pass2"><i class="fa fa-retweet"></i></label>
+                            <input class="input-control" type="password" id="user_pass2" name="user_pass2"
+                                   placeholder="再次输入密码" required="" aria-required="true">
+                        </p>
+                        <p id="captcha_inline">
+                            <input class="input-control inline" type="text" id="_register_captcha" name="_register_captcha"
+                                   placeholder="输入验证码" required="" aria-required="true"/>
+                            <img src="/captcha?timr" class="captcha_img inline" title="点击刷新验证码">
+                            <label class="agreetext" for="agree">
+                                <input name="agree" type="checkbox" checked="checked"
+                                                                        id="agree" class="rememberme" value="forever">接受<a href="#"> 注册协议</a></label>
+                        </p>
+                        <p>
+                            <input class="submit" type="submit" value="注册" name="submit">
+                        </p>
+                        <a class="close"><i class="fa fa-user-plus"></i></a>
+                        <input type="hidden" id="user_security" name="user_security" value="9e4e6e74bd"><input
+                            type="hidden" name="_wp_http_referer" value="/">
+                    </form>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <script type="text/javascript">
+        $('.site_loading').animate({'width': '55%'}, 50);  //第二个节点
+    </script>
+    <div id="sidebar" class="clr">
+        <#include "include/_search_box.html" />
+        <#include "include/_weixin_box.html" />
+        <div class="floatwidget-container">
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('.site_loading').animate({'width': '78%'}, 50);  //第三个节点
+    </script>
+</div>
+<!-- Stickys -->
+
+
+</div>
+</@layout>

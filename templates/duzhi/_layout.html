@@ -1,0 +1,186 @@
+<#macro script_import>
+</#macro>
+<#macro script>
+</#macro>
+<#macro css_import>
+</#macro>
+<#macro css>
+</#macro>
+<#macro layout>
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>${WEB_TITLE!WEB_NAME!} </title>
+        <meta name="keywords" content="${META_KEYWORDS!}">
+        <meta name="description" content="${META_DESCRIPTION!WEB_SUBTITLE!'欢迎使用JPress'}}">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="renderer" content="webkit">
+        <!-- 网站图标 -->
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <meta name="Author" contect="Allen Peng"/>
+        <!-- 禁止浏览器初始缩放 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//cdn.bootcss.com/font-awesome-animation/0.0.10/font-awesome-animation.css" rel="stylesheet"/>
+        <script type='text/javascript'
+                src='//cdn.bootcss.com/jquery/1.10.2/jquery.min.js?version=${JPRESS_VERSION}'></script>
+        <!--引用内部JS-->
+        <@assets var="href" file="/subs/me_dz_cm.jcss" id="layout001">
+            <link rel="stylesheet" href="${href}"/>
+         </@assets>
+        <@css_import />
+        <#if css ??>
+            <style type="text/css">
+                <@css />
+            </style>
+        </#if>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var tin = {"ajax_url":"\/to_all/ajax","tin_url":"${CTPATH}","Tracker":{"type":"home","pid":1}};
+            /* ]]> */
+        </script>
+
+    </head>
+    <!--<body class="blog-body">-->
+    <body id="wrap" class="home blog logged-in" style="background:#e8e8e8; ">
+    <!-- Nav -->
+    <!-- Moblie nav-->
+    <div id="body-container">
+        <aside id="navmenu-mobile">
+            <div id="navmenu-mobile-wraper">
+                <div class="mobile-login-field">
+                    <div id="login-box-mobile">
+                        <div class="login-yet-mobile">
+                            <div class="login-yet-mobile-avatar">
+                                <img alt=''
+                                     src=''
+                                     srcset=''
+                                     class='avatar avatar-60 photo' height='60' width='60'/></div>
+                            <div class="login-yet-mobile-manageinfo">
+                                <a href="/?from_title" class="title">{${WEB_NAME}}</a>
+                                <a href="/author/duzhi?tab=profile" class="name">@ duzhi</a>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                    </div>
+                </div>
+                <ul id="menu-mobile" class="menu-mobile">
+                    <#include "include/menus.html" />
+                </ul>
+            </div>
+        </aside>
+        <!-- /.Moblie nav -->
+        <section id="content-container">
+            <#include "header/header.html" />
+            <div class="hidefixnav"></div>
+            <!-- End Nav -->
+            <script type="text/javascript">
+                $('.site_loading').animate({'width': '33%'}, 50);
+            </script><!-- Main Wrap -->
+            <#nested>
+                <!--/.Main Wrap -->
+                <!-- Bottom Banner -->
+                <!--<div style="height:20px;"></div>-->
+                <!-- /.Bottom Banner -->
+                <div id="ft-wg-sr">
+                    <div class="container">
+                    </div>
+                </div>
+                <!-- Footer -->
+                <#include "foot/_lay_footer_wrap.html"/>
+                <!-- Footer Nav Wrap -->
+                <#include "foot/_lay_footer_nav.html"/>
+                <script type="text/javascript">
+                    $('.site_loading').animate({'width': '90%'}, 50);
+                </script>
+        </section>
+    </div>
+
+    <#include "include/_login.html"/>
+    <div class="floatbtn">
+
+        <!-- Comment -->
+        <!-- /.Comment -->
+        <!-- Share -->
+        <span id="bdshare" class="bdshare_t mobile-hide"><a class="bds_more" href="#" data-cmd="more"></a></span>
+        <!-- /.Share -->
+        <!-- QR -->
+        <span id="qr" class="mobile-hide"><i class="fa fa-qrcode"></i>
+	<div id="floatbtn-qr">
+		<div id="floatbtn-qr-msg">扫一扫二维码分享</div>
+	</div>
+</span>
+        <!-- /.QR -->
+
+        <!-- Simplified or Traditional -->
+        <span id="zh-cn-tw" class="mobile-hide"><i><a id="StranLink">繁</a></i></span>
+        <!-- /.Simplified or Traditional -->
+
+        <!-- Layout Switch -->
+        <span id="layoutswt" class="mobile-hide">
+		<i class="fa fa-th is_blog" src="${OPTION('web_domain')}"></i>
+</span>
+        <!-- /.Layout Switch -->
+
+        <!-- Back to Home -->
+        <!-- /.Back to Home -->
+        <!-- Scroll Top -->
+        <span id="back-to-top"><i class="fa fa-arrow-up"></i></span>
+        <!-- /.Scroll Top -->
+    </div><!-- /.Footer Nav Wrap -->
+
+    <@script_import />
+    <script type="text/javascript">var defaultEncoding = 0;
+    var translateDelay = 100;
+    var cookieDomain = "http://duzhi.me";</script>
+    <script type="text/javascript" id="bdshare_js" data="type=tools&mini=2"></script>
+    <script type="text/javascript" id="bdshell_js"></script>
+    <script type="text/javascript">
+        var bds_config = {'snsKey': {'tsina': "2884429244", 'tqq': "101166664"}};
+        document.getElementById('bdshell_js').src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000);
+    </script>
+    <!--<script src="${CTPATH}/assets/js/jquery-2.1.1.min.js"></script>-->
+
+    <!--<script src="${CTPATH}/assets/mediaelement/mediaelement-and-player.min.js"></script>-->
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]>
+    <script src="${CTPATH}/assets/js/html5.js?version=${JPRESS_VERSION}"></script>
+    <script src="${CTPATH}/assets/js/css3-mediaqueries.js?version=${JPRESS_VERSION}"></script>
+    <script src="${CTPATH}/assets/js/PIE_IE678.js?version=${JPRESS_VERSION}"></script>
+    <link rel="stylesheet" type="text/css" href="${CTPATH}/assets/css/iefix.css?version=${JPRESS_VERSION}" media="all"/>
+    <![endif]-->
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="${CTPATH}/assets/fonts/font-awesome/font-awesome-ie7.min.css?version=${JPRESS_VERSION}"
+          media="all"/>
+    <![endif]-->
+    <!--[if IE 6]>
+    <script src="${CTPATH}/assets/js/kill-IE6.js"></script>
+    <![endif]-->
+
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+    <@assets var="href" file="/subs/me_dz_cm.jjs" id="layout002">
+    <script type="text/javascript" src="${href}" ></script>
+    </@assets>
+    <@css_import />
+    <@script />
+    </body>
+    </html>
+
+</#macro>

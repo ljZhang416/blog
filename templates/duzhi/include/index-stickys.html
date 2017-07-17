@@ -1,0 +1,33 @@
+<section class="stickys clr">
+    <h2 class="home-heading clr">
+		<span class="heading-text-blog"><i class="fa fa-chevron-right"></i>置顶推荐		</span>
+    </h2>
+    <div class="stickys-container stickys-two-col stickys-latest-list clr">
+        <@jp.contents module="article"  typeId="5"  count="4" orderBy="comment_count">
+        <#list contents as content>
+            <article class="clr col-small">
+                <div class="inner">
+                    <a href="${content.url}" title="${content.title}"
+                       class="fancyimg home-blog-entry-thumb">
+                        <div class="thumb-img">
+                            <img src="${(content.image)!}"
+                                 alt="${content.title}">
+                            <span><i class="fa fa-star"></i></span>
+                        </div>
+                    </a>
+                    <h3><a href="${content.url}" title="${content.title}">${content.title}</a>
+                    </h3>
+                    <p>
+                        ${content.summary}
+                    </p>
+                </div>
+                <div class="meta">
+                    <i class="fa fa-calendar"></i>&nbsp;<span class="date">${content.created!string("yyyy-MM-dd")}</span>
+                    &nbsp;<i class="fa fa-fire"></i>&nbsp;<span class="views">浏览: ${content.view_count!'0'}</span>
+                    &nbsp;<i class="fa fa-comments"></i>&nbsp;<span class="comments">评论: ${content.comment_count!'0'}</span>
+                </div>
+            </article>
+        </#list>
+    </@jp.contents>
+    </div>
+</section>

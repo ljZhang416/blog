@@ -1,0 +1,41 @@
+<div id="footer-wrap">
+    <div id="footer" class="layout-wrap">
+        <!-- Footer Widgets -->
+        <div id="footer-widgets">
+            <div class="footer-widgets-1 footer-widgets-one-third ">
+                <div id="tintagcloud-2" class="widget widget_tintagcloud">
+                    <aside class="tags" count="50">
+                        <@jp.tags count=40 >
+                        <#list tags as tag>
+                            <a class="tag-link-215 tag-link-position-2" href="${tag.url!}">${tag.title!}</a>
+                        </#list>
+                    </@jp.tags >
+                    </aside>
+                </div>
+            </div>
+            <div class="footer-widgets-2 footer-widgets-one-third ">
+                <div id="tinaboutsite-3" class="widget widget_tinaboutsite">
+                    <div class="aboutsite">
+                        ${OPTION('duzhi_aboutsite')!}
+                    </div>
+                </div>
+                <div id="tinaboutsite-2" class="widget widget_tinaboutsite">
+                    <div class="duzhi_site_links">
+                        ${OPTION('duzhi_site_links')!}
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-widgets-3 footer-widgets-one-third last">
+                <div id="enhancedtextwidget-4" class="widget widget_text enhanced-text-widget">
+                    <div class="textwidget widget-text"><h1>${OPTION('duzhi_wechat_mp_tips')!}</h1>
+                        <img src="${OPTION('duzhi_wechat_mp_image')!}" alt ="${OPTION('duzhi_wechat_mp_tips')!}"/>
+                        <div>
+                </div>
+                </div></div>
+            </div>
+        </div>
+        <div class="clr"></div>
+        <!-- /.Footer Widgets -->
+    </div>
+</div>

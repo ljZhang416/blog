@@ -1,0 +1,38 @@
+<div class="box-body">
+    <div class="form-group">
+        <label for="duzhi_aboutsite">站点描述</label>
+        <textarea class="form-control" rows="3" placeholder="Enter ..." name="duzhi_aboutsite" id="duzhi_aboutsite">${OPTION('duzhi_aboutsite')!}</textarea>
+    </div>
+    <div class="form-group">
+        <label>Https</label>
+        <input class="form-control" name="dz_https"
+               value="${OPTION('dz_https')!}"/>
+        <p class="help-block">标记为YES(大写),则启用Https</p>
+    </div>
+
+    <div class="form-group">
+        <label>图片上传路径设置</label>
+        <input class="form-control" name="upload_read_path"
+               value="${OPTION('upload_read_path')!}"/>
+    </div>
+    <div class="form-group">
+        <label>站点消息</label>
+        <textarea class="form-control" name="duzhi_sitenews"
+        >${OPTION('duzhi_sitenews')!}</textarea>
+        <p class="help-block">网站顶部显示站点自定义消息，一行一条消息</p>
+    </div>
+    <div class="form-group">
+        <label>第三方统计代码</label>
+        <textarea class="form-control" name="duzhi_statistical_code"
+        >${OPTION('duzhi_statistical_code')!}</textarea>
+    </div>
+    <div class="form-group">
+        <label>百度Site站点</label>
+        <input class="form-control" name="_dz_baidu_site" value="${OPTION('_dz_baidu_site')!}"></input>
+        <p class="help-block">为空时默认获取Web_domain</p>
+    </div>
+    <div class="form-group">
+        <label>百度SiteToken</label>
+        <input class="form-control" rows="4" name="_dz_baidu_token" value="${OPTION('_dz_baidu_token')!}"></input>
+    </div>
+</div>
